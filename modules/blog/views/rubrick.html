@@ -1,0 +1,77 @@
+<div class="width-container bg-sidebar-pro">
+    <div id="content-container">
+        <?foreach($data['articles'] as $ar) {?>
+        <article>
+            <div class="container-blog">
+
+                <div class="pro-cat">
+                    <time class="entry-date" datetime="2014-07-15T14:51:02+00:00"><?=$ar->time_to_publick?></time>
+                </div>
+                <h2 class="blog-title">
+                    <a href="/blog/<?=$ar->alias?>"><?=$ar->title?></a>
+                </h2>
+
+
+                <div class="featured-blog-progression">
+                    <a href="blog-post.html">
+                        <img width="900" height="400" src="/content/blog/<?=$ar->image?>"
+                             class="attachment-progression-blog" alt="<?=$ar->title?>">
+                    </a>
+                </div>
+
+                <div class="blog-container-text">
+                    <div class="entry-content">
+                        <p>
+                            <?
+                                $st = explode('<!-- pagebreak -->',htmlspecialchars_decode($ar->content));
+                            echo strip_tags($st[0]);
+                            ?>
+                        </p>
+
+                        <p><a href="/blog/<?=$ar->alias?>" class="more-link"><?=MORE?> <span
+                                class="meta-nav">→</span></a></p>
+
+                    </div>
+                    <!-- .entry-content -->
+                </div>
+                <!-- close .blog-container-text -->
+            </div>
+        </article>
+        <?}?>
+
+        <ul class="page-numbers">
+            <?
+                for ($i = 1; $i <= $data['pages']; $i++) {
+            ?>
+            <li><a href="/blog/rubrick/<?=$data['current_rubrick']->alias?>/<?=$i?>"
+                    <?if (($i-1) == $data['current_page']) {?>
+                    style = "background: black; color: white"
+                    <?}?>
+                    ><?=$i?></a></li>
+            <?}?>
+        </ul>
+    </div>
+    <!-- close #content-container -->
+
+    <div id="sidebar">
+        <div id="categories-2" class="sidebar-item widget widget_categories"><h6
+                class="widget-title"><?=CATEGORIES?></h6>
+            <ul>
+                <?foreach($data['rubricks'] as $rub) {?>
+                <li class="cat-item cat-item-1">
+                    <a href="/blog/rubrick/<?=$rub->alias?>" <?if ($data['current_rubrick']->alias == $rub->alias){?>
+                    style = "color: black;"
+                    <?}?>>
+                    <?=$rub->name?></a>
+                </li>
+                <?}?>
+            </ul>
+            <div class="sidebar-divider"></div>
+        </div>
+    </div>
+    <!-- close #sidebar -->
+    <div class="clearfix"></div>
+</div>
+
+
+<div class="clearfix"></div>

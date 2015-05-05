@@ -1,0 +1,133 @@
+<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+    <ul id="myTab" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#new" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true"><?=NEW_ORDERS?></a></li>
+        <li role="presentation" class=""><a href="#calculate" role="tab" id="profile-tab" data-toggle="tab" aria-controls="calculate" aria-expanded="false"><?=CALCULATE?></a></li>
+        <li role="presentation" class=""><a href="#calculated" role="tab" id="calculated-tab" data-toggle="tab" aria-controls="calculated" aria-expanded="false"><?=CALCULATED?></a></li>
+        <li role="presentation" class=""><a href="#cancel" role="tab" id="cancel-tab" data-toggle="tab" aria-controls="cancel" aria-expanded="false"><?=CANCEL?></a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div role="tabpanel" class="tab-pane fade active in" id="new" aria-labelledby="new-tab">
+            <table class="table">
+                <tr style="font-weight: bold;">
+                    <td>#</td>
+                    <td><?=FIO?></td>
+                    <td><?=EMAIL?></td>
+                    <td><?=TELEPHONE?></td>
+                    <td><?=ADDRESS?></td>
+                    <td><?=TOTAL?></td>
+                    <td><?=DATE?></td>
+                    <td><?=DELIVERY?></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <?foreach($data['new'] as $order) {?>
+                <tr>
+                    <td><?=$order->_id?></td>
+                    <td><?=$order->fio?></td>
+                    <td><?=$order->email?></td>
+                    <td><?=$order->telephone?></td>
+                    <td><?=$order->address?></td>
+                    <td><?=$order->total?> <?=VALUTE?></td>
+                    <td><?=date("d-m-Y <b>H:i</b>",$order->time)?></td>
+                    <td><?=$order->delivery?></td>
+                    <td><a href="<?=MODULE_URL?>/order/<?=$order->_id?>" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                    <td><a href="<?=MODULE_URL?>/order_delete/<?=$order->_id?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+                </tr>
+                <?}?>
+            </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="calculate" aria-labelledby="calculate-tab">
+            <table class="table">
+                <tr style="font-weight: bold;">
+                    <td>#</td>
+                    <td><?=FIO?></td>
+                    <td><?=EMAIL?></td>
+                    <td><?=TELEPHONE?></td>
+                    <td><?=ADDRESS?></td>
+                    <td><?=TOTAL?></td>
+                    <td><?=DATE?></td>
+                    <td><?=DELIVERY?></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <?foreach($data['calculate'] as $order) {?>
+                <tr>
+                    <td><?=$order->_id?></td>
+                    <td><?=$order->fio?></td>
+                    <td><?=$order->email?></td>
+                    <td><?=$order->telephone?></td>
+                    <td><?=$order->address?></td>
+                    <td><?=$order->total?> <?=VALUTE?></td>
+                    <td><?=date("d-m-Y <b>H:i</b>",$order->time)?></td>
+                    <td><?=$order->delivery?></td>
+                    <td><a href="<?=MODULE_URL?>/order/<?=$order->_id?>" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                    <td><a href="<?=MODULE_URL?>/order_delete/<?=$order->_id?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+                </tr>
+                <?}?>
+            </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="calculated" aria-labelledby="calculated-tab">
+            <table class="table">
+                <tr style="font-weight: bold;">
+                    <td>#</td>
+                    <td><?=FIO?></td>
+                    <td><?=EMAIL?></td>
+                    <td><?=TELEPHONE?></td>
+                    <td><?=ADDRESS?></td>
+                    <td><?=TOTAL?></td>
+                    <td><?=DATE?></td>
+                    <td><?=DELIVERY?></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <?foreach($data['calculated'] as $order) {?>
+                <tr>
+                    <td><?=$order->_id?></td>
+                    <td><?=$order->fio?></td>
+                    <td><?=$order->email?></td>
+                    <td><?=$order->telephone?></td>
+                    <td><?=$order->address?></td>
+                    <td><?=$order->total?> <?=VALUTE?></td>
+                    <td><?=date("d-m-Y <b>H:i</b>",$order->time)?></td>
+                    <td><?=$order->delivery?></td>
+                    <td><a href="<?=MODULE_URL?>/order/<?=$order->_id?>" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                    <td><a href="<?=MODULE_URL?>/order_delete/<?=$order->_id?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+                </tr>
+                <?}?>
+            </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="cancel" aria-labelledby="cancel-tab">
+            <table class="table">
+                <tr style="font-weight: bold;">
+                    <td>#</td>
+                    <td><?=FIO?></td>
+                    <td><?=EMAIL?></td>
+                    <td><?=TELEPHONE?></td>
+                    <td><?=ADDRESS?></td>
+                    <td><?=TOTAL?></td>
+                    <td><?=DATE?></td>
+                    <td><?=DELIVERY?></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <?foreach($data['cancel'] as $order) {?>
+                <tr>
+                    <td><?=$order->_id?></td>
+                    <td><?=$order->fio?></td>
+                    <td><?=$order->email?></td>
+                    <td><?=$order->telephone?></td>
+                    <td><?=$order->address?></td>
+                    <td><?=$order->total?> <?=VALUTE?></td>
+                    <td><?=date("d-m-Y <b>H:i</b>",$order->time)?></td>
+                    <td><?=$order->delivery?></td>
+                    <td><a href="<?=MODULE_URL?>/order/<?=$order->_id?>" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                    <td><a href="<?=MODULE_URL?>/order_delete/<?=$order->_id?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+                </tr>
+                <?}?>
+            </table>
+        </div>
+    </div>
+</div>

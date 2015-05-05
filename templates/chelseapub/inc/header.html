@@ -1,0 +1,46 @@
+<div id="header-top">
+    <div class="width-container">
+        <div id="additional-social-pro">
+            <div class="social-ico">
+                <a href="https://vk.com/id256709734" target="_blank"><i class="fa fa-vk"></i></a>
+                <a href="https://www.facebook.com/pages/Chelsea-Pub/319663854850177" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/ChelseaPub_cv" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://instagram.com/chelseapubua/" target="_blank"><i class="fa fa-instagram"></i></a>
+                <a href="https://ru.foursquare.com/v/chelsea-pub/4c3a1b1d18e72d7f565c1bf5" target="_blank"><i class="fa fa-foursquare"></i></a>
+            </div>
+        </div>
+
+        <div style="margin-left: 200px;">
+            <div class="social-ico">
+                <a href="/language/ua" ><img src="/languages/ua.png" style="width: 24px;"></a>
+                <a href="/language/ru" ><img src="/languages/ru.png" style="width: 24px;"></a>
+                <a href="/language/en" ><img src="/languages/en.png" style="width: 24px;"></a>
+            </div>
+        </div>
+
+        <div id="header-right-pro">
+            <div class="header_right_text_pro"><?=strip_tags(C_BRON)?></div>
+            <div class="booking_Text_pro"><a href="http://booking.chelsea-pub.com/preview.php" target="_blank"><?=BOOKING_ONLINE?> <i
+                    class="fa fa-calendar"></i></a></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div id="pro-header-white">
+    <div class="width-container">
+        <h1 id="logo">
+            <a href="/" title="Chelsea Pub" rel="home">
+                <img src="/content/logo.png" alt="Chelsea Pub" width="236">
+            </a>
+        </h1>
+        <nav>
+            <div class="menu-main-navigation-container">
+                <?
+                        $mb = LoadPlugin('MenuBuilder');
+                        $mb->build($menu);
+                ?>
+            </div>
+        </nav>
+        <div class="clearfix"></div>
+    </div>
+</div>

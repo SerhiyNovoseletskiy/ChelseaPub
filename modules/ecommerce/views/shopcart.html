@@ -1,0 +1,76 @@
+<?$total = 0;?>
+<link rel="stylesheet" href="/templates/chelseapub/css/wooecommerce.css">
+<div class="woocommerce">
+        <table class="shop_table cart" cellspacing="0">
+            <thead>
+            <tr>
+                <th class="product-remove">&nbsp;</th>
+                <th class="product-thumbnail">&nbsp;</th>
+                <th class="product-name"><?=PRODUCT?></th>
+                <th class="product-price"><?=PRICE?></th>
+                <th class="product-quantity"><?=COUNT?></th>
+                <th class="product-subtotal"><?=TOTAL?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?foreach($data as $c) {?>
+            <tr class="cart_item">
+                <td class="product-remove"><a
+                        href="/ecommerce/removefromcart/<?=$c->_id?>"
+                        class="remove">×</a></td>
+                <td class="product-thumbnail"><a href="/content/ecommerce/products/<?=$c->image?>"><img
+                        width="100"
+                        src="/content/ecommerce/products/small_<?=$c->image?>"
+                        class="attachment-shop_thumbnail"></a></td>
+                <td class="product-name"><?=$c->title?></td>
+                <td class="product-price"><span class="amount"><?=$c->price?> <?=VALUTE?></span></td>
+                <td class="product-quantity">
+
+                    <div class="quantity"><input type="number" step="1" min="0"
+                                                  value="<?=$c->count?>"
+                                                  class="input-text qty text"
+                                                  id = "count_<?=$c->_id?>"
+                                                  onblur="update_cart(<?=$c->_id?>)"
+                                                  size="4"></div>
+                </td>
+                <td class="product-subtotal"><span class="amount"><?=$c->count * $c->price?> <?=VALUTE?></span></td>
+            </tr>
+            <?
+            $total += $c->count * $c->price;
+            }?>
+            </tbody>
+        </table>
+    <div class="cart-collaterals">
+        <div class="cart_totals"><h2><?=SUMM?> : <?=$total?> <?=VALUTE?></h2>
+
+            <div class="wc-proceed-to-checkout">
+                <a href="/ecommerce/category/Bar" class="checkout-button button alt wc-forward"><span class="fa fa-arrow-left"></span> <?=BACK_TO_SHOP?></a>
+                <a href="/ecommerce/checkout/" class="checkout-button button alt wc-forward"><?=CHECK_OUT?></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(
+            function() {
+                if (localStorage.getItem('position') != null) {
+                    $(document).scroll(localStorage.getItem('position'));
+                }
+            }
+    );
+
+    function isNumeric(n) {
+        return !isNaN(parseInt(n)) && isFinite(n);
+    }
+
+    function update_cart(id) {
+        var count = parseInt($("#count_"+id).val());
+        if (isNumeric(count)) {
+            $.post('/ecommerce/updatecart',{id: id, count: count}, function(){
+                location.href = location;
+                localStorage.setItem('position', $(document).scrollTop());
+            });
+        }
+    }
+</script>

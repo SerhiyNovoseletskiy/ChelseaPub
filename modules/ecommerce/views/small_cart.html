@@ -1,0 +1,15 @@
+<ul class="cd-cart-items">
+    <?
+    $summ = 0;
+    foreach($data as $c) {
+    $summ += $c->count * $c->price;
+    ?>
+    <li>
+        <span class="cd-qty"><?=$c->count?>x</span> <?=$c->title?>
+        <div class="cd-price"><?=$c->price?> <?=VALUTE?></div>
+    </li>
+    <?}?>
+</ul>
+<div class="cd-cart-total">
+    <p><?=TOTAL?> <span><?=$summ?> <?=VALUTE?></span></p>
+</div>

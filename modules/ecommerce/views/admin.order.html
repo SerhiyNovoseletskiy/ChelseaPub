@@ -1,0 +1,104 @@
+<div class="col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?=$data['order']->fio?></h3>
+        </div>
+
+        <div class="panel-body" >
+            <?if (isset($data['user'])) {?>
+            <p>
+            <img src="/content/avatars/<?=$data['user']->avatar?>" class="image" width="130"></p>
+            <?}?>
+            <label><b><?=FIO?></b> : <?=$data['order']->fio?></label><br>
+            <label><b><?=EMAIL?></b> : <?=$data['order']->email?></label><br>
+            <label><b><?=TELEPHONE?></b> : <?=$data['order']->telephone?></label><br>
+            <label><b><?=ADDRESS?></b> : <?=$data['order']->address?></label><br>
+            <label><b><?=DELIVERY?></b> : <?=$data['delivery']->name?></label><br>
+            <label><b><?=DATE?></b> : <?=date("d-m-Y H:i",$data['order']->time)?></label><br>
+            <label><?=STATUS?></label>
+            <select class="form-control
+            <?
+            switch($data['order']->status) {
+                case 'new' : echo 'btn btn-default';break;
+                case 'calculate' : echo 'btn btn-warning';break;
+                case 'calculated' : echo 'btn btn-success';break;
+                case 'cancel' : echo 'btn btn-danger';break;
+            }
+            ?>
+            " onchange="change_status(this)">
+                <option value="new"><?=NEW_ORDER?></option>
+                <option value="calculate" <?if ($data['order']->status == 'calculate') echo 'selected'?>><?=CALCULATE?></option>
+                <option value="calculated" <?if ($data['order']->status == 'calculated') echo 'selected'?>><?=CALCULATED?></option>
+                <option value="cancel" <?if ($data['order']->status == 'cancel') echo 'selected'?>><?=CANCEL?></option>
+            </select>
+            <label><b><?=DESCRIPTION?></b> :</label><br>
+            <p>
+                <?=htmlspecialchars($data['order']->description)?>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+
+        <div class="panel-body" >
+            <table class="table table-mailbox">
+                <thead style="font-weight: bold;">
+                    <td><?=PRODUCT?></td>
+                    <td><?=COUNT?></td>
+                </thead>
+                <?foreach($data['products'] as $product) {?>
+                <tr>
+                    <td>
+                        <a href="/admin/module/ecommerce/product_edit/<?=$product->_id?>" target="_blank"><?=$product->title?></a>
+                    </td>
+                    <td><?=$product->count?></td>
+                </tr>
+                <?}?>
+            </table>
+        </div>
+
+        <div class="panel-footer">
+            <h3 class="panel-title"><?=TOTAL?> : <?=$data['order']->total?> <?=VALUTE?></h3>
+        </div>
+    </div>
+</div>
+
+<script>
+    function change_status(e) {
+        $.post('<?=MODULE_URL?>/change_status',{id: <?=$data['order']->_id?>, status: $(e).val()});
+
+        switch ($(e).val()) {
+            case 'new': {
+                $(e).removeClass('btn-warning');
+                $(e).removeClass('btn-success');
+                $(e).removeClass('btn-danger');
+                $(e).addClass('btn-default');
+            }break;
+
+            case 'calculate': {
+                $(e).addClass('btn-warning');
+                $(e).removeClass('btn-success');
+                $(e).removeClass('btn-default');
+                $(e).removeClass('btn-danger');
+            }break;
+
+            case 'calculated': {
+                $(e).removeClass('btn-warning');
+                $(e).removeClass('btn-default');
+                $(e).removeClass('btn-danger');
+                $(e).addClass('btn-success');
+            }break;
+
+            case 'cancel': {
+                $(e).removeClass('btn-warning');
+                $(e).removeClass('btn-default');
+                $(e).addClass('btn-danger');
+                $(e).removeClass('btn-success');
+            }
+        }
+    }
+</script>

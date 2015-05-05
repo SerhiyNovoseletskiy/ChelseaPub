@@ -1,0 +1,36 @@
+<table class="table">
+    <?
+    foreach($data as $brand) {
+    ?>
+    <tr>
+        <td>
+            <?=$brand->_id?>
+        </td>
+
+        <td>
+            <?=$brand->name?>
+        </td>
+
+        <td>
+            <?=$brand->description?>
+        </td>
+
+        <td>
+            <?if($brand->image !== ''){?>
+            <img src="/content/ecommerce/categories/small_<?=$brand->image?>" width="100">
+            <?}?>
+        </td>
+
+        <td>
+            <a href = "<?=MODULE_URL?>/category_edit/<?=$brand->_id?>" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span></a>
+        </td>
+
+        <td>
+            <a href = "<?=MODULE_URL?>/category_remove/<?=$brand->_id?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+        </td>
+    </tr>
+
+    <?
+    }
+    ?>
+</table>

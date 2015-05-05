@@ -1,0 +1,73 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="<?=LANGUAGE?>"> <!--<![endif]-->
+<head>
+    <?require_once 'head.html'?>
+    <link rel="stylesheet" href="/templates/chelseapub/css/skdslider.css">
+    <script src="/templates/chelseapub/css/skdslider.js"></script>
+</head>
+<body>
+
+<header>
+    <?require_once 'header.html'?>
+</header>
+
+<div class="skdslider">
+    <ul id="afisha" class="slides">
+        <?foreach($articles as $article) {?>
+        <li>
+            <img src="/content/blog/<?=$article->image?>" />
+            <div class="slide-desc">
+                <h2><?=$article->title?></h2>
+                <p><a class="more" href="/blog/<?=$article->alias?>"><?=MORE?></a></p>
+            </div>
+        </li>
+        <?}?>
+    </ul>
+</div>
+
+<div id="address-hours-homepage">
+    <div class="width-container">
+        <div id="address-homepage-pro"><?=C_ADDRESS?></div>
+        <div id="hours-homepage-pro"><?=OPEN_TIME?></div>
+    </div>
+</div>
+
+
+<div id="main">
+    <div class="width-container">
+        <?
+            LoadView($module, $view, $data, $data1);
+        ?>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+
+
+<?require_once 'footer.php'?>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('#afisha').skdslider({
+                delay:5000,
+                animationSpeed: 500,
+                showNextPrev:true,
+                showPlayButton:false,
+                autoSlide:true,animationType:'fading'
+            });
+            jQuery('#responsive').change(function(){
+                $('#responsive_wrapper').width(jQuery(this).val());
+                $(window).trigger('resize');
+            });
+
+        });
+    </script>
+</body>
+</html>

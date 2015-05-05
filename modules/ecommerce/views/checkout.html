@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="/templates/chelseapub/css/wooecommerce.css">
+<div class="woocommerce">
+    <form name="checkout" method="post" class="checkout woocommerce-checkout"
+          action="/ecommerce/order" enctype="multipart/form-data">
+        <div class="col2-set" id="customer_details">
+            <div class="col-1">
+                <div class="woocommerce-billing-fields"><h3><?=CHECK_OUT?></h3>
+
+                    <p class="form-row form-row-first validate-required woocommerce-invalid woocommerce-invalid-required-field"
+                       id="billing_first_name_field"><label class=""><?=FIO?><abbr
+                            class="required" title="required">*</abbr></label><input type="text" class="input-text "
+                                                                                     name="fio"
+                                                                                     placeholder="" value="" required=""></p>
+
+                    <p class="form-row form-row-last validate-required" id="billing_last_name_field"><label
+                            class=""><?=EMAIL?><abbr class="required" title="required">*</abbr></label><input
+                            type="email" class="input-text " name="email"
+                            placeholder="" value="" required=""></p>
+
+
+                    <p class="form-row form-row-wide address-field validate-required" id="billing_address_1_field">
+                        <label for="billing_address_1" class=""><?=ADDRESS?> <abbr class="required"
+                                                                                   title="required">*</abbr></label><input
+                            type="text" class="input-text " name="address" id="billing_address_1"
+                            value="" required=""></p>
+
+
+                    <p class="form-row form-row-last address-field validate-required validate-postcode"
+                       id="billing_postcode_field"
+                       data-o_class="form-row form-row-last address-field validate-required validate-postcode"><label
+                            for="billing_postcode" class=""><?=TELEPHONE?> <abbr class="required"
+                                                                                 title="required">*</abbr></label><input
+                            type="text" class="input-text " name="telephone" id="billing_postcode"
+                            value="" required=""></p>
+
+                    <div class="clear"></div>
+
+                    <p class="form-row form-row-first validate-required validate-email" id="billing_email_field"><label
+                            class=""><?=DELIVERY?> <abbr class="required" title="required">*</abbr></label>
+                        <select class="input-text" name="delivery">
+                            <?foreach($data as $d) {?>
+                            <option value="<?=$d->_id?>"><?=$d->name?></option>
+                            <?}?>
+                        </select>
+                    </p>
+
+                    <p class="form-row form-row-first validate-required validate-email"><label
+                            class=""><?=DESCRIPTION?> </label>
+                        <textarea name="description" style="height: 200px;"></textarea>
+                    </p>
+
+                    </p>
+
+                    <div class="clear"></div>
+                    <button class="button"><?=CHECKOUT?></button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

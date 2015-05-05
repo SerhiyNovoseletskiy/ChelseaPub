@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title><?=SITE_NAME?> | SitMap</title>
+</head>
+<body>
+<h3>Pages</h3>
+<ul>
+    <?foreach($data['languages'] as $lang){?>
+    <li><?=$lang->name?>
+        <ul>
+            <?foreach($data['pages'] as $ar) {?>
+            <?if ($ar->language == $lang->code){?>
+            <li><a href="/page/<?=$ar->alias?>/<?=$lang->code?>"><?=$ar->title?></a></li>
+            <?}?>
+            <?}?>
+        </ul>
+    </li>
+    <?}?>
+</ul>
+
+    <h3>Articles</h3>
+    <ul>
+        <?foreach($data['languages'] as $lang){?>
+        <li><?=$lang->name?>
+        <ul>
+            <?foreach($data['articles'] as $ar) {?>
+            <?if ($ar->language == $lang->code){?>
+            <li><a href="/blog/<?=$ar->alias?>/<?=$lang->code?>"><?=$ar->title?></a></li>
+            <?}?>
+            <?}?>
+        </ul>
+        </li>
+        <?}?>
+    </ul>
+</body>
+</html>

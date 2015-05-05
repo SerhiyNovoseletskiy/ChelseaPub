@@ -1,0 +1,88 @@
+<script src="/plugins/js/translit.js"></script>
+<script src="/plugins/js/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea', plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor  jbimages"
+        ],
+        toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        toolbar2: "print preview media | forecolor backcolor emoticons", language: '<?=DEFAULT_LANGUAGE?>'
+    });
+</script>
+<form id = "product" action="<?=MODULE_URL?>/product_update" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?=$data['product']->_id?>">
+    <div class="col-md-8">
+
+        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs" role="tablist">
+                <?
+            $i = 0;
+            foreach($data['languages'] as $language) {?>
+                <li role="presentation"
+                <?if ($i == 0){?> class="active"<?}?>><a href="#<?=$language->code?>" id="<?=$language->code?>-tab"
+                                                         role="tab" data-toggle="tab" aria-controls="<?=$language->code?>"
+                                                         aria-expanded="true"><?=$language->name?></a></li>
+                <?$i++;}?>
+            </ul>
+            <div class="tab-content">
+                <?
+            $i = 0;
+            foreach($data['languages'] as $language) {?>
+                <div role="tabpanel" class="tab-pane <?if ($i == 0) {?> active<?}?> " id="<?=$language->code?>">
+                    <label><?=PRODUCT?></label>
+                    <input type="text" id="title" name = "title_<?=$language->code?>" value="<?=$data[$language->code]->title?>" maxlength="200" class="form-control" required="">
+                    <textarea name="content_<?=$language->code?>" style="height: 400px;"><?=$data[$language->code]->content?></textarea>
+                </div>
+                <?$i++;}?>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label><?=ALIAS?></label>
+        <input type="text" id="alias" name = "alias" maxlength="200" value="<?=$data['product']->alias?>" class="form-control" required="">
+
+        <label><?=CATEGORY?></label>
+        <select name="category" required="" class="form-control">
+            <option value="">-- <?=CATEGORY?> --</option>
+            <?
+                foreach($data['categories'] as $category) {
+            ?>
+            <option value="<?=$category->_id?>" <?if ($category->_id == $data['product']->category) echo 'selected'?>><?=$category->name?></option>
+            <?
+                }
+            ?>
+        </select>
+
+        <label><?=BRAND?></label>
+        <select name="brand" required="" class="form-control">
+            <option value="">-- <?=BRAND?> --</option>
+            <?
+                foreach($data['brands'] as $brand) {
+            ?>
+            <option value="<?=$brand->_id?>" <?if ($brand->_id == $data['product']->brand) echo 'selected'?>><?=$brand->name?></option>
+            <?
+                }
+            ?>
+        </select>
+
+        <label><?=PRICE?></label>
+        <input type="number" name="price" required="" value="<?=$data['product']->price?>" class="form-control">
+
+
+        <label><?=IMAGE?></label>
+        <?if ($data['product']->image !== '') {?>
+        <img src="/content/ecommerce/products/<?=$data['product']->image?>">
+        <?}?>
+        <input type="file" name="image" accept="image/*">
+
+        <label><?=KEYWORDS?></label>
+        <input type="text" name="keywords" value="<?=$data['product']->keywords?>" class="form-control">
+
+        <label><?=DESCRIPTION?></label>
+        <input type="text" name="description" value="<?=$data['product']->description?>" class="form-control">
+    </div>
+</form>

@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12 product-viewer clearfix">
+                <div id="product-image-container">
+                    <figure><img src="/content/ecommerce/products/small_<?=$data->image?>"
+                                 data-zoom-image="/content/ecommerce/products/<?=$data->image?>"
+                                 id="product-image">
+                        <figcaption class="item-price-container">
+                        <span
+                                class="item-price"><?=$data->price?> <?=VALUTE?></span></figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 product">
+                <div class="lg-margin visible-sm visible-xs"></div>
+                <h1 class="product-name"><?=$data->title?></h1>
+
+                <div class="ratings-container">
+                    <ul class="product-list">
+
+                        <li><span><?=BRAND?> : </span><a href = '/ecommerce/brand/<?=$data->brandAlias?>'><?=$data->brand?></a></li>
+                        <li><span><?=CATEGORY?> : </span><a href = '/ecommerce/category/<?=$data->categoryAlias?>'><?=$data->category?></a></li>
+                    </ul>
+                    <div class="lg-margin"></div>
+                    <p>
+                        <?=$data->content?>
+                    </p>
+
+                    <div class="lg-margin"></div>
+                    <div class="product-add clearfix">
+                        <a href="/ecommerce/addtocart/<?=$data->_id?>"><button class="btn btn-custom"><?=ADD_TO_CART?></button></a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

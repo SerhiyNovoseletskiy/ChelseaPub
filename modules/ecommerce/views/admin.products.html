@@ -1,0 +1,77 @@
+<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+    <ul id="myTab" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#all" id="home-tab" role="tab" data-toggle="tab"
+                                                  aria-controls="all" aria-expanded="true"><?=ALL?></a></li>
+        <?foreach($data['categories'] as $rub) {?>
+        <li role="presentation"><a href="#rub_<?=$rub->_id?>" role="tab" data-toggle="tab" aria-controls="all"
+                                   aria-expanded="true"><?=$rub->name?></a></li>
+        <?}?>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+        <div role="tabpanel" class="tab-pane fade active in" id="all" aria-labelledby="new-tab">
+            <table class="table">
+                <thead>
+                <td>#</td>
+                <td><?=PRODUCT?></td>
+                <td><?=CATEGORY?></td>
+                <td><?=BRAND?></td>
+                <td><?=PRICE?></td>
+                <td></td>
+                <td><?=IMAGE?></td>
+                </thead>
+                <?
+    foreach($data['products'] as $product) {
+    ?>
+                <tr>
+                    <td><?=$product->_id?></td>
+                    <td><?=$product->title?></td>
+                    <td><?=$product->category_name?></td>
+                    <td><?=$product->brand_name?></td>
+                    <td><?=$product->price?></td>
+                    <td><?if ($product->image !== ''){?><img
+                            src="/content/ecommerce/products/small_<?=$product->image?>" width="60"><?}?></td>
+                    <td><a class="btn btn-primary" href='<?=MODULE_URL?>/product_edit/<?=$product->_id?>'><span
+                            class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a class="btn btn-danger" href='<?=MODULE_URL?>/product_delete/<?=$product->_id?>'><span
+                            class="glyphicon glyphicon-remove"></span></a></td>
+                </tr>
+                <?}?>
+            </table>
+        </div>
+
+        <?foreach($data['categories'] as $rub) {?>
+        <div role="tabpanel" class="tab-pane fade active in" id="rub_<?=$rub->_id?>" aria-labelledby="new-tab">
+            <table class="table">
+                <thead>
+                <td>#</td>
+                <td><?=PRODUCT?></td>
+                <td><?=CATEGORY?></td>
+                <td><?=BRAND?></td>
+                <td><?=PRICE?></td>
+                <td></td>
+                <td><?=IMAGE?></td>
+                </thead>
+                <?
+    foreach($data['products'] as $product) {
+    if ($product->category == $rub->_id) {
+                ?>
+                <tr>
+                    <td><?=$product->_id?></td>
+                    <td><?=$product->title?></td>
+                    <td><?=$product->category_name?></td>
+                    <td><?=$product->brand_name?></td>
+                    <td><?=$product->price?></td>
+                    <td><?if ($product->image !== ''){?><img
+                            src="/content/ecommerce/products/small_<?=$product->image?>" width="60"><?}?></td>
+                    <td><a class="btn btn-primary" href='<?=MODULE_URL?>/product_edit/<?=$product->_id?>'><span
+                            class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a class="btn btn-danger" href='<?=MODULE_URL?>/product_delete/<?=$product->_id?>'><span
+                            class="glyphicon glyphicon-remove"></span></a></td>
+                </tr>
+                <?}}?>
+            </table>
+        </div>
+        <?}?>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<?foreach($data as $product) {?>
+<div class="col-md-4 col-sm-8 col-xs-12">
+    <div class="item item-hover">
+        <div class="item-image-wrapper">
+            <figure class="item-image-container"><a href="/ecommerce/product/<?=$product['alias']?>"><img
+                    src="/content/ecommerce/products/small_<?=$product['image']?>" alt="<?=$product['title']?>"
+                    class="item-image"> <img src="/content/ecommerce/products/small_<?=$product['image']?>" class="item-image-hover"></a></figure>
+            <div class="item-price-container"><span class="item-price"><?=$product['price']?> <?=VALUTE?></span></div>
+        </div>
+        <div class="item-meta-container">
+            <h3 class="item-name"><a href="/ecommerce/product/<?=$product['alias']?>"><?=$product['title']?></a></h3>
+
+            <div class="item-action"><a href="/ecommerce/addtocart/<?=$product['id']?>" class="item-add-btn"><span
+                    class="icon-cart-text"><?=ADD_TO_CART?></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<?}?>

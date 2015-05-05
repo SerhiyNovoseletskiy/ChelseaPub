@@ -1,0 +1,20 @@
+<script src="/plugins/js/translit.js"></script>
+
+<form id='brand' action="<?=MODULE_URL?>/save_brand" method="POST" enctype="multipart/form-data">
+    <div class="col-md-8">
+        <label><?=BRAND?></label>
+        <input type="text" name="name" required="" class="form-control" id="title" maxlength="70">
+
+        <label><?=ALIAS?></label>
+        <input type="text" name="alias" required="" class="form-control" id="alias" maxlength="70">
+
+        <label><?=DESCRIPTION?></label>
+        <textarea maxlength="250" class="form-control" name="description"></textarea>
+    </div>
+
+    <div class="col-md-4">
+        <label><?=IMAGE?></label>
+        <input type="file" name="image"  accept="image/*">
+    </div>
+
+</form>

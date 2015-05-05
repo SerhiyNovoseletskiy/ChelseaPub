@@ -1,0 +1,258 @@
+/* Table of Contents
+==================================================
+01. RETINA STYLES
+02. BASE STYLES (1140px)
+03. #DESKTOP (960px)
+04. #Tablet (Portrait)
+05. #Mobile (Portrait)
+*/
+
+
+
+/*
+=============================================== 01. RETINA STYLES ===============================================
+*/
+@media screen and (-webkit-min-device-pixel-ratio: 1.5) {
+    body nav select {background: url(../images/select-arrow@2x.png) center right no-repeat; background-size:contain;}
+    .flex-direction-nav a {background-image: url(../images/slider/arrows@2x.png); background-size:80px 60px;}
+}
+
+/* IE7-IE8 Fixes*/
+.lt-ie9	body nav select {background: url(../images/select-arrow.png) center right no-repeat;}
+.lt-ie9 .flex-direction-nav a {background-image: url(../images/slider/arrows.png); background-size:68px 69px;}
+
+
+/*
+=============================================== 02. BASE STYLES (1140px) ===============================================
+*/
+/* Note: Design for a width of 1040px */
+html {-webkit-text-size-adjust: none;}	/* Removes webkit font resizing */
+body {max-width:100%; width:100%;}
+img {max-width:100%; height: auto; }
+.width-container, .flex-caption .slider-container {-moz-transition: all .2s ease-in-out; -webkit-transition: all .2s ease-in-out; }
+
+
+/*
+=============================================== 03. #DESKTOP (960px) ===============================================
+*/
+/* Note: Design for a width of 960px */
+@media only screen and (min-width: 959px) and (max-width: 1190px) {
+
+    .flex-caption .slider-container, .width-container, .home-widget .textwidget {width:92%;} /* Default Width */
+
+
+    .sf-menu a { padding-right:10px; padding-left:10px;}
+    #cart-hover-div a {padding-left:20px;}
+
+    .booking_Text_pro { padding-left:20px; }
+
+    .social-ico a i {margin-right:5px;}
+
+    ul.pro-top-menu li a { margin-left:15px; }
+
+    .menu-index-pro h5 {
+        font-size:20px;
+    }
+
+
+    .pro_menu_price {
+        font-size:20px;
+    }
+
+
+}
+
+
+/*
+=============================================== 04. #Tablet (Portrait) ===============================================
+*/
+/* Note: Design for a width of 768px */
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+
+    #pro-header-fixed {position:relative !important;}
+    .pro-header-spacing {display:none !important;}
+
+    /* Default Width */
+    .flex-caption .slider-container, .width-container, .home-widget .textwidget { width:92%; }
+
+    /* WooCommerce Columns */
+    body #main .width-container li.product.column-4 {margin-right:2%; width: 23.5%; clear:none;}
+    body #main .width-container li.product.column-3 {margin-right:2%; width: 32%; clear:none;}
+    body #main .width-container li.product.column-2 {margin-right:2%; width: 49%; clear:none; }
+
+
+    body #main .width-container li.product.column-2.last, body #main .width-container li.product.column-3.last, body #main .width-container li.product.column-4.last, .lt-ie8 body #main .width-container li.product.column-2.last, .lt-ie8 body #main .width-container li.product.column-3.last, .lt-ie8 body #main .width-container li.product.column-4.last {margin-right:0%;}
+
+    body #main .width-container li.product { float:left;}
+    body #main .width-container li.product.first { clear: both;}
+
+    body #main .width-container .columns-2 li.product {margin-left:1%;margin-right:1%; width: 48%; }
+    body #main .width-container .columns-3 li.product {margin-left:1%;margin-right:1%; width: 31.3%; }
+    body #main .width-container .columns-4 li.product {margin-left:1%;margin-right:1%; width: 23%; }
+
+
+
+    .sf-menu a { padding-right:3px; padding-left:3px;}
+    #cart-hover-div a {padding-left:10px;}
+
+    .booking_Text_pro { padding-left:20px; }
+
+    .social-ico a i {margin-right:3px;}
+
+    ul.pro-top-menu li a { margin-left:10px; }
+
+
+    h1 {font-size:35px; }
+    h2 {font-size:30px;  }
+    h3 {font-size:23px;  }
+    h4 {font-size:20px; }
+    h5 {font-size:18px; }
+    h6 {font-size:16px; }
+
+    #copyrigh-text { padding:0px; float:none; text-align:center; margin: 0 auto;}
+    #copyright {text-align:center;}
+    a.scrollup {display:none;}
+
+    footer #copyright ul.pro-footer-menu {float:none; margin:0 auto;text-align:center;}
+
+
+
+    .menu-index-pro h5 {
+        font-size:19px;
+    }
+    .pro_menu_price {
+        font-size:19px;
+    }
+
+
+}
+
+
+/*
+=============================================== 05. #Mobile (Portrait) ===============================================
+*/
+/* Note: Design for a width of 320px */
+
+@media only screen and (max-width: 767px) {
+
+    body, footer {font-size:13px;}
+
+    /* Default Width */
+    .width-container, .flex-caption .slider-container, .home-widget .textwidget { width:90%; }
+
+    #pro-header-fixed {position:relative !important;}
+    .pro-header-spacing {display:none !important;}
+
+    /* Default Grid */
+    .footer-2-column .widget, .footer-3-column .widget, .footer-4-column .widget,
+    #sidebar, #content-container, footer .footer-2-column .widget, footer .footer-3-column .widget, footer .footer-4-column .widget,
+    .grid2column-progression, .grid3column-progression, .grid3columnbig-progression, .grid4column-progression, .grid4columnbig-progression,
+    #sidebar, #content-container {
+        width:100%; margin-bottom:10px;
+    }
+
+    body #main .width-container li.product.column-2, body #main .width-container li.product.column-3, body #main .width-container li.product.column-4, .lt-ie8 body #main .width-container li.product.column-2, .lt-ie8 body #main .width-container li.product.column-3, .lt-ie8 body #main .width-container li.product.column-4
+    {
+        margin-left:0px !important;
+        margin-right:0px !important;
+        width:100% !important;
+        margin-bottom:10px;
+    }
+
+
+    /* Header Styling */
+    #additional-social-pro {float:none; margin: 0 auto 5px 0px; text-align:center;}
+    #header-right-pro {float:none; margin: 10px auto 0px 0px; text-align:center; line-height:1.6;}
+
+    /* Slider Styling */
+    body #pro-home-slider a.progression-button.secondary {
+        padding:5px 10px !important;
+    }
+
+    body #pro-home-slider .progression-button {
+        padding:6px 10px !important;
+    }
+
+    /* Footer Styling */
+    #copyrigh-text { padding:0px; float:none; text-align:center; margin: 0 auto;}
+    #copyright {text-align:center;}
+    a.scrollup {display:none;}
+
+    footer #copyright ul.pro-footer-menu {float:none; margin:0 auto;text-align:center;}
+
+    /* Select Menu */
+    h1#logo {float:none !important; padding:0px; margin:0 auto; text-align:center;}
+    #additional-icons-nav {display:none; float:none; margin:0 auto; background:none; text-align:center;}
+    nav {float:none; margin:0 auto 5px auto;  background:none;}
+    nav ul { display: none;  }
+    nav select option { background:#fff; color:#888;}
+    nav select { text-transform:none; display:block;  margin-left:auto; margin-right:auto; width:300px; min-width: 150px; max-width: 100%; -webkit-appearance: none; -moz-appearance: normal; appearance: normal;
+        -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;
+        -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        -webkit-padding-end: 20px; -webkit-padding-start: 2px; -webkit-user-select: none;-moz-user-select: none;
+        background:#FAFAFA url(../images/select-arrow.png) center right no-repeat;;
+        font-size:13px;
+        border: 1px solid #aaaaaa;
+        color: #555555;
+        padding:7px 5px 7px 10px;
+    }
+
+    #cart-hover-div  {
+        display:none;
+    }
+
+    /* BLOG Adjustments */
+    .commentlist {width:95%; left:-10px;}
+    .commentlist .children li.comment .comment-meta {margin-left:0px;}
+    .commentlist .avatar, .commentlist > li:before {display:none;}
+    .commentlist .avatar {display:none;}
+
+    /* WOOCOMMERCE */
+    .product-remove {display:none;}
+    #single-product-pro .entry-summary { padding:0px; background:none; }
+    body.woocommerce .commentlist {left:0px;}
+    .comment-text {
+        width:90% !important;
+        margin:0px !important;
+        margin-left:-10px !important;
+    }
+
+    .portfolio-index-text.video-portfolio-pro {
+        position:relative;
+    }
+    img.filler-pro {display:none;}
+    .video-pro-portfolio {height:auto; margin:0px;}
+
+    .woocommerce table.cart {
+        font-size:10px;
+    }
+
+    /* Heading Sizes */
+    h1 {font-size:30px; }
+    h2 {font-size:26px;  }
+    h3 {font-size:20px;  }
+    h4 {font-size:16px; }
+    h5 {font-size:15px; }
+    h6 {font-size:12px; }
+
+    .menu-index-pro h5 {
+        font-size:15px;
+    }
+    .pro_menu_price {
+        font-size:12px;
+    }
+
+    #map-progression iframe {
+        max-height:250px !important;
+    }
+    #map-progression {
+        max-height: 250px;
+    }
+
+    .progression-contact input, #respond input {width:185px;}
+    .progression-contact textarea, #respond textarea {width:215px; }
+
+
+
+}

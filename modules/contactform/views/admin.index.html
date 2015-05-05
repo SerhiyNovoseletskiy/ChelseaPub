@@ -1,0 +1,29 @@
+<table class="table">
+    <?
+    foreach($data as $form) {
+    ?>
+    <tr class="<? if ($form->view == 0) echo 'alert-warning';?>">
+        <td>
+            <?= $form->_contakt_id?>
+        </td>
+
+        <td>
+            <?= $form->username?>
+        </td>
+
+        <td>
+            <?= date("d-m-Y H:i", $form->time)?>
+        </td>
+
+        <td>
+            <a href = "<?=MODULE_URL?>/view/<?=$form->_contakt_id?>" class="btn btn-primary"><span class="glyphicon glyphicon-open"></span></a>
+        </td>
+
+        <td>
+            <a href = "<?=MODULE_URL?>/delete/<?=$form->_contakt_id?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+        </td>
+    </tr>
+    <?
+    }
+    ?>
+</table>

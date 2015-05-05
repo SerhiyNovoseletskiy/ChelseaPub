@@ -1,0 +1,226 @@
+<script src="/templates/chelseapub/js/toaster.js"></script>
+<link rel="stylesheet" href="/templates/chelseapub/css/toaster.css">
+
+<div id="cd-cart">
+    <h2><?=CART?></h2>
+
+    <div id="cart_content"></div>
+    <!-- cd-cart-total -->
+
+    <a href="/ecommerce/checkout" class="checkout-btn"><?=CHECKOUT?></a>
+    <a href="/ecommerce/shopcart" class="checkout-btn" style="background: #FF9233;"><?=GO_TO_CART?></a>
+</div>
+<!-- cd-cart -->
+<div id="cd-shadow-layer"></div>
+
+<div class="width-container">
+    <div id="menu-index">
+        <a class="more-link" id="cd-cart-trigger"><span
+                class="fa fa-shopping-cart"></span> <?=OPEN_CART?></a>
+
+        <ul id="menu-sub-nav">
+            <?
+                $current = 0;
+                if (!is_null($data['children']))
+                    $current = $data['children'][0]->parent;
+                else
+                    foreach($data['parents'] as $cat)
+                        if ($cat->_id == $data['current_category']->_id)
+                            $current = $cat->_id;
+
+            ?>
+            <?
+            $i == 0;
+            foreach($data['parents'] as $cat) {?>
+            <li <? if ($i == 0 and $current == 0) {
+                    echo 'class = "current-cat"';
+                } else {
+                    if ($current == $cat->_id)
+            echo 'class = "current-cat"';
+            }
+            ?>>
+                <a href="/ecommerce/category/<?=$cat->alias?>"><?=$cat->name?></a>
+            </li>
+            <?$i++;}?>
+        </ul>
+
+
+        <div class="clearfix"></div>
+
+        <ul id="menu-sub-nav">
+            <?
+            $current = 0;
+             if (!is_null($data['children']))
+                foreach($data['children'] as $cat)
+                if ($cat->_id == $data['current_category']->_id)
+                    $current = $cat->_id;
+            ?>
+
+            <?
+            $i = 0;
+            if (!is_null($data['children']))
+            foreach($data['children'] as $cat){
+            ?>
+            <li
+            <?
+                if ($i == 0 and $current == 0) {
+                    echo 'class = "current-cat"';
+                } else {
+                    if ($current == $cat->_id)
+            echo 'class = "current-cat"';
+            }
+            ?>>
+            <a href="/ecommerce/category/<?=$cat->alias?>"><?=$cat->name?></a>
+            </li>
+            <?$i++;}?>
+        </ul>
+
+        <div class="clearfix"></div>
+        <?foreach($data['products'] as $product) {?>
+        <article>
+            <div class="menu-index-pro">
+                <div class="menu-image-pro">
+                    <a href="/content/ecommerce/products/<?=$product->image?>"
+                       rel="prettyPhoto">
+                        <img width="800" height="400"
+                             src="/content/ecommerce/products/small_<?=$product->image?>"
+                             class="attachment-progression-menu wp-post-image"
+                             alt="steak-1"></a>
+                </div>
+
+                <div class="menu-content-pro">
+                    <div class="pro_menu_price"><?=$product->price?> <?=VALUTE?></div>
+                    <h5><?=$product->title?></h5>
+
+                    <div class="menu_content_pro">
+                        <p><?=$product->content?></p>
+                    </div>
+                    <a onclick="add_to_cart(<?=$product->_id?>)" class="more-link"><span
+                            class="fa fa-shopping-cart"></span> <?=ADD_TO_CART?></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- close .portfolio-index-text -->
+        </article>
+        <?}?>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(get_cart());
+
+    function get_cart() {
+        $.get(
+                '/ecommerce/getcart',
+                {},
+                function(d) {
+                    $('#cart_content').html(d);
+                }
+        );
+    }
+
+    function add_to_cart(id) {
+        $.post(
+                '/ecommerce/addtocart',
+                {
+                    id: id
+                },
+                function(data) {
+                    var added = "<?=ADDED_TO_CART?>";
+                    var updated = "<?=UPDATED?>";
+                    get_cart();
+                    data = jQuery.parseJSON(data);
+
+                    if (data.type == 'insert')
+                        toastr.success(data.product + " "+added.toLowerCase(), added);
+                    else
+                        toastr.success(data.product + " "+updated.toLowerCase(), updated);
+                }
+        );
+    }
+
+    jQuery(document).ready(function($){
+        //if you change this breakpoint in the style.css file (or _layout.scss if you use SASS), don't forget to update this value as well
+        var $L = 1200,
+                $menu_navigation = $('.header-nav-bar'),
+                $cart_trigger = $('#cd-cart-trigger'),
+                $hamburger_icon = $('#cd-hamburger-menu'),
+                $lateral_cart = $('#cd-cart'),
+                $shadow_layer = $('#cd-shadow-layer');
+
+        //open lateral menu on mobile
+        $hamburger_icon.on('click', function(event){
+            event.preventDefault();
+            //close cart panel (if it's open)
+            $lateral_cart.removeClass('speed-in');
+            toggle_panel_visibility($menu_navigation, $shadow_layer, $('body'));
+        });
+
+        //open cart
+        $cart_trigger.on('click', function(event){
+            event.preventDefault();
+            //close lateral menu (if it's open)
+            $menu_navigation.removeClass('speed-in');
+            toggle_panel_visibility($lateral_cart, $shadow_layer, $('body'));
+        });
+
+        //close lateral cart or lateral menu
+        $shadow_layer.on('click', function(){
+            $shadow_layer.removeClass('is-visible');
+            // firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
+            if( $lateral_cart.hasClass('speed-in') ) {
+                $lateral_cart.removeClass('speed-in').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+                    $('body').removeClass('overflow-hidden');
+                });
+                $menu_navigation.removeClass('speed-in');
+            } else {
+                $menu_navigation.removeClass('speed-in').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+                    $('body').removeClass('overflow-hidden');
+                });
+                $lateral_cart.removeClass('speed-in');
+            }
+        });
+
+        //move #main-navigation inside header on laptop
+        //insert #main-navigation after header on mobile
+        move_navigation( $menu_navigation, $L);
+        $(window).on('resize', function(){
+            move_navigation( $menu_navigation, $L);
+
+            if( $(window).width() >= $L && $menu_navigation.hasClass('speed-in')) {
+                $menu_navigation.removeClass('speed-in');
+                $shadow_layer.removeClass('is-visible');
+                $('body').removeClass('overflow-hidden');
+            }
+
+        });
+    });
+
+    function toggle_panel_visibility ($lateral_panel, $background_layer, $body) {
+        if( $lateral_panel.hasClass('speed-in') ) {
+            // firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
+            $lateral_panel.removeClass('speed-in').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+                $body.removeClass('overflow-hidden');
+            });
+            $background_layer.removeClass('is-visible');
+
+        } else {
+            $lateral_panel.addClass('speed-in').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+                $body.addClass('overflow-hidden');
+            });
+            $background_layer.addClass('is-visible');
+        }
+    }
+
+    function move_navigation( $navigation, $MQ) {
+        if ( $(window).width() >= $MQ ) {
+            $navigation.detach();
+            $navigation.appendTo('header');
+        } else {
+            $navigation.detach();
+            $navigation.insertAfter('header');
+        }
+    }
+</script>

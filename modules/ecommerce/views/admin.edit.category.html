@@ -1,0 +1,24 @@
+<script src="/plugins/js/translit.js"></script>
+
+<form id='category' action="<?=MODULE_URL?>/update_category" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?=$data->_id?>">
+    <div class="col-md-8">
+        <label><?=BRAND?></label>
+        <input type="text" name="name" required="" value="<?=$data->name?>" class="form-control" id="title" maxlength="70">
+
+        <label><?=ALIAS?></label>
+        <input type="text" name="alias" required="" value="<?=$data->alias?>" class="form-control" id="alias" maxlength="70">
+
+        <label><?=DESCRIPTION?></label>
+        <textarea maxlength="250" class="form-control" name="description"><?=$data->description?></textarea>
+    </div>
+
+    <div class="col-md-4">
+        <label><?=IMAGE?></label>
+        <?if ($data->brand_image !== '') {?>
+        <img src="/content/ecommerce/categories/small_<?=$data->image?>" style="max-width: 100%;">
+        <?}?>
+        <input type="file" name="image" accept="image/*">
+    </div>
+
+</form>
